@@ -5,93 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beit El - Settlement Expansion Report</title>
     <style>
+        :root {
+            --bg-main: #0B1220;
+            --bg-card: #111827;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9CA3AF;
+            --text-muted: #6B7280;
+            --border-color: #1F2937;
+            --accent-blue: #3B82F6;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             padding: 20px;
-            background: #f0f0f0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0B1220 0%, #111827 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #0B1220 0%, #111827 100%);
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="settlement-report" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; background: #f5f5f5; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+<div class="settlement-report" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; background: #111827; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(59,130,246,0.05); border: 1px solid #1F2937;">
     
     <!-- Header -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; border-bottom: 3px solid #fbc02d; padding-bottom: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; border-bottom: 2px solid #FFDC00; padding-bottom: 16px;">
         <div>
-            <h1 style="margin: 0 0 4px 0; font-size: 28px; color: #1a1a1a;">Beit El</h1>
-            <p style="margin: 0; font-size: 14px; color: #666;">ID: 1 • settlement • Est. 1977</p>
+            <h1 style="margin: 0 0 4px 0; font-size: 28px; color: #FFFFFF; font-weight: 700;">Beit El</h1>
+            <p style="margin: 0; font-size: 14px; color: #9CA3AF;">ID: 1 • settlement • Est. 1977</p>
         </div>
-        <div style="background: #fbc02d; color: white; padding: 12px 20px; border-radius: 6px; text-align: center;">
+        <div style="background: linear-gradient(135deg, #FFDC00dd 0%, #FFDC0099 100%); color: white; padding: 16px 24px; border-radius: 12px; text-align: center; border: 1px solid #FFDC00; box-shadow: 0 0 20px #FFDC0040;">
             <div style="font-size: 24px; font-weight: bold;">48.7%</div>
-            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">medium</div>
+            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">medium</div>
         </div>
     </div>
     
     <!-- Risk Components -->
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-        <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #2196F3;">
-            <div style="font-size: 12px; color: #666; text-transform: uppercase; font-weight: 500;">XGBoost Risk</div>
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-top: 4px;">0.929</div>
+        <div style="background: #1F2937; padding: 16px; border-radius: 12px; border-left: 3px solid #3B82F6; border: 1px solid #374151; box-shadow: 0 0 15px #3B82F620;">
+            <div style="font-size: 12px; color: #9CA3AF; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">XGBoost Risk</div>
+            <div style="font-size: 20px; font-weight: bold; color: #3B82F6; margin-top: 8px;">0.929</div>
         </div>
-        <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #4CAF50;">
-            <div style="font-size: 12px; color: #666; text-transform: uppercase; font-weight: 500;">TimeSeries Risk</div>
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-top: 4px;">0.074</div>
+        <div style="background: #1F2937; padding: 16px; border-radius: 12px; border-left: 3px solid #10B981; border: 1px solid #374151; box-shadow: 0 0 15px #10B98120;">
+            <div style="font-size: 12px; color: #9CA3AF; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">TimeSeries Risk</div>
+            <div style="font-size: 20px; font-weight: bold; color: #10B981; margin-top: 8px;">0.074</div>
         </div>
-        <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #FF9800;">
-            <div style="font-size: 12px; color: #666; text-transform: uppercase; font-weight: 500;">Spatial Risk</div>
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-top: 4px;">0.000</div>
+        <div style="background: #1F2937; padding: 16px; border-radius: 12px; border-left: 3px solid #F97316; border: 1px solid #374151; box-shadow: 0 0 15px #F9731620;">
+            <div style="font-size: 12px; color: #9CA3AF; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Spatial Risk</div>
+            <div style="font-size: 20px; font-weight: bold; color: #F97316; margin-top: 8px;">0.000</div>
         </div>
     </div>
     
     <!-- Key Metrics -->
-    <div style="background: white; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
-        <h3 style="margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; color: #666; font-weight: 600;">Spatial Indicators</h3>
+    <div style="background: #1F2937; padding: 16px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #374151;">
+        <h3 style="margin: 0 0 12px 0; font-size: 12px; text-transform: uppercase; color: #9CA3AF; font-weight: 700; letter-spacing: 1px;">Spatial Indicators</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div>
-                <div style="font-size: 12px; color: #999;">Current Area</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">484.67 ha</div>
+                <div style="font-size: 12px; color: #6B7280;">Current Area</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">484.67 ha</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Growth Rate</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">110,092 m²/yr</div>
+                <div style="font-size: 12px; color: #6B7280;">Growth Rate</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">110,092 m²/yr</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">5-Year Forecast</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">580.93 ha</div>
-                <div style="font-size: 11px; color: #666; margin-top: 2px;">+19.9% growth</div>
+                <div style="font-size: 12px; color: #6B7280;">5-Year Forecast</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">580.93 ha</div>
+                <div style="font-size: 11px; color: #9CA3AF; margin-top: 4px;">+19.9% growth</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Confiscations</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">5 total</div>
-                <div style="font-size: 11px; color: #666; margin-top: 2px;">0 recent</div>
+                <div style="font-size: 12px; color: #6B7280;">Confiscations</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">5 total</div>
+                <div style="font-size: 11px; color: #9CA3AF; margin-top: 4px;">0 recent</div>
             </div>
         </div>
     </div>
     
     <!-- Pressure Indicators -->
-    <div style="background: white; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
-        <h3 style="margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; color: #666; font-weight: 600;">Risk Factors</h3>
+    <div style="background: #1F2937; padding: 16px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #374151;">
+        <h3 style="margin: 0 0 12px 0; font-size: 12px; text-transform: uppercase; color: #9CA3AF; font-weight: 700; letter-spacing: 1px;">Risk Factors</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
             <div>
-                <div style="font-size: 12px; color: #999;">Leaked Ratio</div>
-                <div style="font-size: 14px; font-weight: bold; color: #1a1a1a;">26.9%</div>
+                <div style="font-size: 12px; color: #6B7280;">Leaked Ratio</div>
+                <div style="font-size: 14px; font-weight: bold; color: #FFFFFF;">26.9%</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Zone-C Coverage</div>
-                <div style="font-size: 14px; font-weight: bold; color: #1a1a1a;">57.5%</div>
+                <div style="font-size: 12px; color: #6B7280;">Zone-C Coverage</div>
+                <div style="font-size: 14px; font-weight: bold; color: #FFFFFF;">57.5%</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Transactions</div>
-                <div style="font-size: 14px; font-weight: bold; color: #1a1a1a;">69</div>
+                <div style="font-size: 12px; color: #6B7280;">Transactions</div>
+                <div style="font-size: 14px; font-weight: bold; color: #FFFFFF;">69</div>
             </div>
         </div>
     </div>
     
     <!-- Report Footer -->
-    <div style="font-size: 11px; color: #999; text-align: center; padding-top: 12px; border-top: 1px solid #e0e0e0;">
-        Generated on 2026-04-08 14:52:30 • Settlement Expansion Risk Analysis
+    <div style="font-size: 11px; color: #6B7280; text-align: center; padding-top: 12px; border-top: 1px solid #374151;">
+        Generated on 2026-04-08 15:15:47 • Settlement Expansion Risk Analysis
     </div>
     
 </div>

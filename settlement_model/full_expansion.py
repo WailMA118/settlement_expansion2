@@ -199,6 +199,19 @@ class FoliumMapWriter:
         </div>
         """
         m.get_root().html.add_child(folium.Element(legend_html))
+        
+        button_html = """
+        <div style='position:fixed;bottom:30px;right:30px;z-index:1000'>
+          <a href='/rasad%20(3).html' style='display:inline-block;
+                    background:#3498db;color:white;padding:10px 20px;
+                    border-radius:4px;text-decoration:none;font-family:sans-serif;
+                    font-size:14px;font-weight:bold;cursor:pointer;
+                    transition:background 0.3s'>
+           العودة الى لوحة التحكم
+          </a>
+        </div>
+        """
+        m.get_root().html.add_child(folium.Element(button_html))
 
 
 # ── Console table ─────────────────────────────────────────────

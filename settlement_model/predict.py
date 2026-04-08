@@ -178,15 +178,16 @@ def _generate_html_report(result: dict) -> str:
     """
     Generate an embeddable HTML section with settlement expansion risk summary.
     Returns HTML string that can be embedded in other pages.
+    Dark mode fintech-inspired design with glowing accents.
     """
     sev = result["severity"]
     severity_colors = {
-        "critical": "#d32f2f",
-        "high": "#f57c00",
-        "medium": "#fbc02d",
-        "low": "#388e3c"
+        "critical": "#FF4757",
+        "high": "#FFA502",
+        "medium": "#FFDC00",
+        "low": "#2ED573"
     }
-    sev_color = severity_colors.get(sev, "#9e9e9e")
+    sev_color = severity_colors.get(sev, "#9CA3AF")
     
     # Calculate area growth percentage
     area_growth_pct = 0
@@ -194,82 +195,82 @@ def _generate_html_report(result: dict) -> str:
         area_growth_pct = (result["forecast_5yr_area"] - result["area_latest_m2"]) / result["area_latest_m2"] * 100
     
     html = f"""
-<div class="settlement-report" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; background: #f5f5f5; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+<div class="settlement-report" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; background: #111827; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(59,130,246,0.05); border: 1px solid #1F2937;">
     
     <!-- Header -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; border-bottom: 3px solid {sev_color}; padding-bottom: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; border-bottom: 2px solid {sev_color}; padding-bottom: 16px;">
         <div>
-            <h1 style="margin: 0 0 4px 0; font-size: 28px; color: #1a1a1a;">{result['name']}</h1>
-            <p style="margin: 0; font-size: 14px; color: #666;">ID: {result['settlement_id']} • {result['type']} • Est. {result['established_year']}</p>
+            <h1 style="margin: 0 0 4px 0; font-size: 28px; color: #FFFFFF; font-weight: 700;">{result['name']}</h1>
+            <p style="margin: 0; font-size: 14px; color: #9CA3AF;">ID: {result['settlement_id']} • {result['type']} • Est. {result['established_year']}</p>
         </div>
-        <div style="background: {sev_color}; color: white; padding: 12px 20px; border-radius: 6px; text-align: center;">
+        <div style="background: linear-gradient(135deg, {sev_color}dd 0%, {sev_color}99 100%); color: white; padding: 16px 24px; border-radius: 12px; text-align: center; border: 1px solid {sev_color}; box-shadow: 0 0 20px {sev_color}40;">
             <div style="font-size: 24px; font-weight: bold;">{result['composite_risk']:.1%}</div>
-            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">{sev}</div>
+            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">{sev}</div>
         </div>
     </div>
     
     <!-- Risk Components -->
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-        <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #2196F3;">
-            <div style="font-size: 12px; color: #666; text-transform: uppercase; font-weight: 500;">XGBoost Risk</div>
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-top: 4px;">{result['xgb_risk']:.3f}</div>
+        <div style="background: #1F2937; padding: 16px; border-radius: 12px; border-left: 3px solid #3B82F6; border: 1px solid #374151; box-shadow: 0 0 15px #3B82F620;">
+            <div style="font-size: 12px; color: #9CA3AF; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">XGBoost Risk</div>
+            <div style="font-size: 20px; font-weight: bold; color: #3B82F6; margin-top: 8px;">{result['xgb_risk']:.3f}</div>
         </div>
-        <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #4CAF50;">
-            <div style="font-size: 12px; color: #666; text-transform: uppercase; font-weight: 500;">TimeSeries Risk</div>
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-top: 4px;">{result['ts_risk']:.3f}</div>
+        <div style="background: #1F2937; padding: 16px; border-radius: 12px; border-left: 3px solid #10B981; border: 1px solid #374151; box-shadow: 0 0 15px #10B98120;">
+            <div style="font-size: 12px; color: #9CA3AF; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">TimeSeries Risk</div>
+            <div style="font-size: 20px; font-weight: bold; color: #10B981; margin-top: 8px;">{result['ts_risk']:.3f}</div>
         </div>
-        <div style="background: white; padding: 12px; border-radius: 6px; border-left: 4px solid #FF9800;">
-            <div style="font-size: 12px; color: #666; text-transform: uppercase; font-weight: 500;">Spatial Risk</div>
-            <div style="font-size: 18px; font-weight: bold; color: #1a1a1a; margin-top: 4px;">{result['spatial_risk']:.3f}</div>
+        <div style="background: #1F2937; padding: 16px; border-radius: 12px; border-left: 3px solid #F97316; border: 1px solid #374151; box-shadow: 0 0 15px #F9731620;">
+            <div style="font-size: 12px; color: #9CA3AF; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Spatial Risk</div>
+            <div style="font-size: 20px; font-weight: bold; color: #F97316; margin-top: 8px;">{result['spatial_risk']:.3f}</div>
         </div>
     </div>
     
     <!-- Key Metrics -->
-    <div style="background: white; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
-        <h3 style="margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; color: #666; font-weight: 600;">Spatial Indicators</h3>
+    <div style="background: #1F2937; padding: 16px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #374151;">
+        <h3 style="margin: 0 0 12px 0; font-size: 12px; text-transform: uppercase; color: #9CA3AF; font-weight: 700; letter-spacing: 1px;">Spatial Indicators</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div>
-                <div style="font-size: 12px; color: #999;">Current Area</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">{result['area_latest_m2']/10000:.2f} ha</div>
+                <div style="font-size: 12px; color: #6B7280;">Current Area</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">{result['area_latest_m2']/10000:.2f} ha</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Growth Rate</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">{result['growth_rate_m2yr']:,.0f} m²/yr</div>
+                <div style="font-size: 12px; color: #6B7280;">Growth Rate</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">{result['growth_rate_m2yr']:,.0f} m²/yr</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">5-Year Forecast</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">{result['forecast_5yr_area']/10000:.2f} ha</div>
-                <div style="font-size: 11px; color: #666; margin-top: 2px;">+{area_growth_pct:.1f}% growth</div>
+                <div style="font-size: 12px; color: #6B7280;">5-Year Forecast</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">{result['forecast_5yr_area']/10000:.2f} ha</div>
+                <div style="font-size: 11px; color: #9CA3AF; margin-top: 4px;">+{area_growth_pct:.1f}% growth</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Confiscations</div>
-                <div style="font-size: 16px; font-weight: bold; color: #1a1a1a; margin-top: 2px;">{result['n_conf_total']} total</div>
-                <div style="font-size: 11px; color: #666; margin-top: 2px;">{result['n_conf_recent']} recent</div>
+                <div style="font-size: 12px; color: #6B7280;">Confiscations</div>
+                <div style="font-size: 16px; font-weight: bold; color: #FFFFFF; margin-top: 4px;">{result['n_conf_total']} total</div>
+                <div style="font-size: 11px; color: #9CA3AF; margin-top: 4px;">{result['n_conf_recent']} recent</div>
             </div>
         </div>
     </div>
     
     <!-- Pressure Indicators -->
-    <div style="background: white; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
-        <h3 style="margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; color: #666; font-weight: 600;">Risk Factors</h3>
+    <div style="background: #1F2937; padding: 16px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #374151;">
+        <h3 style="margin: 0 0 12px 0; font-size: 12px; text-transform: uppercase; color: #9CA3AF; font-weight: 700; letter-spacing: 1px;">Risk Factors</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
             <div>
-                <div style="font-size: 12px; color: #999;">Leaked Ratio</div>
-                <div style="font-size: 14px; font-weight: bold; color: #1a1a1a;">{result['leaked_ratio']:.1%}</div>
+                <div style="font-size: 12px; color: #6B7280;">Leaked Ratio</div>
+                <div style="font-size: 14px; font-weight: bold; color: #FFFFFF;">{result['leaked_ratio']:.1%}</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Zone-C Coverage</div>
-                <div style="font-size: 14px; font-weight: bold; color: #1a1a1a;">{result['zone_c_coverage']:.1%}</div>
+                <div style="font-size: 12px; color: #6B7280;">Zone-C Coverage</div>
+                <div style="font-size: 14px; font-weight: bold; color: #FFFFFF;">{result['zone_c_coverage']:.1%}</div>
             </div>
             <div>
-                <div style="font-size: 12px; color: #999;">Transactions</div>
-                <div style="font-size: 14px; font-weight: bold; color: #1a1a1a;">{result['n_transactions']}</div>
+                <div style="font-size: 12px; color: #6B7280;">Transactions</div>
+                <div style="font-size: 14px; font-weight: bold; color: #FFFFFF;">{result['n_transactions']}</div>
             </div>
         </div>
     </div>
     
     <!-- Report Footer -->
-    <div style="font-size: 11px; color: #999; text-align: center; padding-top: 12px; border-top: 1px solid #e0e0e0;">
+    <div style="font-size: 11px; color: #6B7280; text-align: center; padding-top: 12px; border-top: 1px solid #374151;">
         Generated on {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')} • Settlement Expansion Risk Analysis
     </div>
     
@@ -288,7 +289,7 @@ def _save_html_report(result: dict, html_content: str) -> str:
     filename = f"{result['name'].replace(' ', '_').lower()}_report.html"
     filepath = os.path.join(OUTPUT_DIR, filename)
     
-    # Create minimal HTML wrapper
+    # Create minimal HTML wrapper with dark mode CSS
     full_html = f"""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -296,11 +297,32 @@ def _save_html_report(result: dict, html_content: str) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{result['name']} - Settlement Expansion Report</title>
     <style>
+        :root {{
+            --bg-main: #0B1220;
+            --bg-card: #111827;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9CA3AF;
+            --text-muted: #6B7280;
+            --border-color: #1F2937;
+            --accent-blue: #3B82F6;
+        }}
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
         body {{
             margin: 0;
             padding: 20px;
-            background: #f0f0f0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0B1220 0%, #111827 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+        }}
+        @media (prefers-color-scheme: dark) {{
+            body {{
+                background: linear-gradient(135deg, #0B1220 0%, #111827 100%);
+            }}
         }}
     </style>
 </head>
